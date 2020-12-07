@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { dateFormatter } from "../../utils/dateFormatter";
 import ReactPlaceholder from "react-placeholder";
+import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
 import "react-placeholder/lib/reactPlaceholder.css";
 
 export default function User2() {
   const [data, setData] = useState({});
   const [isLoading, setIsLoading] = useState(true);
-
   useEffect(() => {
     setTimeout(function () {
       let cachedData = JSON.parse(localStorage.getItem("userdata"));
@@ -36,6 +36,23 @@ export default function User2() {
             </p>
             <p>{data.email}</p>
             <p>{dateFormatter(data.registered.date)}</p>
+            <MapContainer
+              className="map"
+              center={[data.location.coordinates.latitude,data.location.coordinates.longitude]}
+              zoom={13}
+              scrollWheelZoom={false}
+            >
+              <TileLayer
+                attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+                url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+              />
+              <Marker position={[data.location.coordinates.latitude,data.location.coordinates.longitude]}>
+                <Popup>
+                  {`Localization of ${data.name.first} ${data.name.last}`}
+                </Popup>
+              </Marker>
+            </MapContainer>
+            ,
           </div>
         </div>
       ) : null}
