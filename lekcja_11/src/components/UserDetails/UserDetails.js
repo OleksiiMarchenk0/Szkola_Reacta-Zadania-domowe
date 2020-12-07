@@ -1,12 +1,9 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
+import User2 from '../User2/User2'
 export default function UserDetails() {
-
-  useEffect(() => {
-
-  });
   return (
     <div className="User">
-      UserDetails
+      <User2/>
     </div>
   );
 }

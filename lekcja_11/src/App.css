@@ -1,3 +1,6 @@
+*{
+  box-sizing: border-box;
+}
 .App {
   text-align: center;
 }
@@ -5,4 +8,9 @@
 .User{
   padding: 30px;
   border-bottom: 1px solid #ccc;
+}
+.header{
+  width: 100vw;
+  color:blue;
+  padding: 30px;
 }
