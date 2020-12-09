@@ -11,7 +11,7 @@ function App() {
       <Redirect to="/users-list" />
         <Switch>
           <Route path="/users-list">
-            <UserList />
+            <UserList usersAmount = {10}/>
           </Route>
           <Route path="/users/:id">
             <UserDetails />

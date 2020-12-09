@@ -1,15 +1,12 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { dateFormatter } from "../../utils/dateFormatter";
-import ReactPlaceholder from "react-placeholder";
 import "react-placeholder/lib/reactPlaceholder.css";
-export default function User({ data, isLoading }) {
+export default function User({data}) {
   const sendData = (data) => {
     localStorage.setItem("userdata", JSON.stringify(data));
   };
   return (
-    <ReactPlaceholder type="media" rows={5} ready={!isLoading}>
-      {!isLoading ? (
         <div className="User">
           <div>
             <img
@@ -38,7 +35,5 @@ export default function User({ data, isLoading }) {
             <p>{dateFormatter(data.registered.date)}</p>
           </div>
         </div>
-      ) : null}
-    </ReactPlaceholder>
   );
 }
