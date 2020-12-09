@@ -1,27 +1,12 @@
-import React, { useState, useEffect } from "react";
-import { BrowserRouter as Router, Link, Switch, Route } from "react-router-dom";
+import React from "react";
+import { Link } from "react-router-dom";
 import { dateFormatter } from "../../utils/dateFormatter";
 import ReactPlaceholder from "react-placeholder";
 import "react-placeholder/lib/reactPlaceholder.css";
-export default function User() {
-  const [data, setData] = useState({});
-  const [isLoading, setIsLoading] = useState(true);
+export default function User({ data, isLoading }) {
   const sendData = (data) => {
     localStorage.setItem("userdata", JSON.stringify(data));
   };
-  useEffect(() => {
-    let itemUrl = `https://randomuser.me/api/`;
-    let data;
-    fetch(itemUrl)
-      .then((response) => response.json())
-      .then((data) => {
-        setData(data.results[0]);
-        setIsLoading(false);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  }, {});
   return (
     <ReactPlaceholder type="media" rows={5} ready={!isLoading}>
       {!isLoading ? (
