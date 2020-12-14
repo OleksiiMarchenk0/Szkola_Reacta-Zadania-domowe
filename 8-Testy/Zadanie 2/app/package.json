@@ -1,17 +1,13 @@
 {
-  "name": "lekcja_11",
+  "name": "app",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
     "@testing-library/jest-dom": "^5.11.6",
     "@testing-library/react": "^11.2.2",
-    "@testing-library/user-event": "^12.2.2",
-    "dateformat": "^4.3.1",
-    "leaflet": "^1.7.1",
-    "react": "^17.0.1",
-    "react-dom": "^17.0.1",
-    "react-leaflet": "^3.0.2",
-    "react-placeholder": "^4.0.3",
+    "@testing-library/user-event": "^12.5.0",
+    "react": "^16.0.2",
+    "react-dom": "^16.0.2",
     "react-scripts": "4.0.1",
     "web-vitals": "^0.2.4"
   },
@@ -19,6 +15,7 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
+    "cypress":"cypress open",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
@@ -40,9 +37,8 @@
     ]
   },
   "devDependencies": {
-    "axios": "^0.21.0",
     "enzyme": "^3.11.0",
     "enzyme-adapter-react-16": "^1.15.5",
-    "react-router-dom": "^5.2.0"
+    "react-test-renderer": "^17.0.1"
   }
 }

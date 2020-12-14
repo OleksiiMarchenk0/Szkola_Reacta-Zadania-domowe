@@ -1,0 +1,9 @@
+# Testowanie aplikacji
+## Zadanie 1 
+   [Kod do testów](../../Zadanie%201/sum.test.js)
+## Zadanie 2 
+ [Kod do testów](./src/App.test.js)
+## Zadanie 3
+ [Kod do testów](../../../7-Rest-API/src/App.test.js)
+ ## Zadanie 4
+ [Kod do testów](./cypress/integration/examples/Zadanie4.spec.js)

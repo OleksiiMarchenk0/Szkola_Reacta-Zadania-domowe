@@ -1,3 +1,5 @@
+/**-----------TESTOWANIE APLIKACJI-ZADANIE 1--------------- */
+
 const { expect } = require('@jest/globals');
 const sum = require('./sum');
 

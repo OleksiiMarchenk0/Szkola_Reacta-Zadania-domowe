@@ -1,8 +1,10 @@
-import { render, screen } from '@testing-library/react';
+/**-----------TESTOWANIE APLIKACJI-ZADANIE 3--------------- */
 import App from './App';
+import { shallow } from "enzyme";
 
-test('renders learn react link', () => {
-  render(<App />);
-  const linkElement = screen.getByText(/learn react/i);
-  expect(linkElement).toBeInTheDocument();
-});
+describe("react api test", () => {
+  it("ilośc wygenerowanych userów", () => {
+    const app = shallow(<App />);
+    expect(app.find("UserList").prop("usersAmount")).toEqual(10);
+  });
+})
