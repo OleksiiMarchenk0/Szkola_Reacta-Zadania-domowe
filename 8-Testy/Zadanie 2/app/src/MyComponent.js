@@ -1,4 +1,5 @@
 import React, { useState, useRef } from "react";
+import Input from './Input';
 MyComponent.defaultProps = {
   start: 0
 }
@@ -30,8 +31,9 @@ function MyComponent({start}) {
     <div>
       <br />
       <form onSubmit={onSubmit}>
-        <input id="num" onChange={handleChange} type="number" ref={textInput} value={val} placeholder="Wartośc" />
-        <input className="submit" type="submit" value="Zmień" />
+      <label for="num">Enter</label>
+        <Input id="num" onChange={handleChange} type="text" reference={textInput} value={val} placeholder="Wartośc"/>
+        <Input className="submit" type="submit" value="Zmień" />
       </form>
       <button className="Reset" onClick={Reset}>Reset</button>
       <br />

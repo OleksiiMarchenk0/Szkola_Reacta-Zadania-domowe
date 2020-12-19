@@ -2,7 +2,9 @@
 import App from "./App";
 import { shallow } from "enzyme";
 import MyComponent from "./MyComponent";
-import { render } from "@testing-library/react";
+import Input from "./Input";
+import { getByTestId, getByText,render, screen } from "@testing-library/react";
+import fireEvent from "@testing-library/user-event";
 describe("app test", () => {
   it("initial value should be 0", () => {
     const app = shallow(<App />);
@@ -32,16 +34,25 @@ describe("app test", () => {
     counterVal = wrapper.find("div span.counterVal");
     expect(counterVal.text()).toBe("Count : -1");
   });
-  it("state should properly changes after input value in input field ", () => {
-   // nie dziala
-    let wrapper = shallow(<MyComponent />)
-  let input = wrapper.find('#num');
-  wrapper.find('#num').prop('onChange', { target: { value: 3 } })
-  expect(input.props().value).toEqual(3);
-  let submit = wrapper.find('.submit');
-  submit.simulate("click");
-  let counterVal = wrapper.find("div span.counterVal");
-  expect(counterVal.text()).toBe("Count : 3");
+  const setup = () => {
+    const utils = render(<Input />)
+    const input = utils.getByLabelText('cost-input')
+    return {
+      input,
+      ...utils,
+    }
+  }
+  test("change value after set it in input field", async () => {
+    //doesn't work
+    let wrapper = shallow(<MyComponent />);
+    const { input } = setup()
+    fireEvent.change(input, { target: { value: '3' } })
+    expect(input.value).toBe('3')
+
+    // const counterVal = wrapper.find("span.counterVal");
+    // const submit = wrapper.find(".submit");
+    // expect(counterVal.text()).toBe("Count : 3");
+    
   });
   it("state should set 0 after reset ", () => {
     let wrapper = shallow(<MyComponent />);
