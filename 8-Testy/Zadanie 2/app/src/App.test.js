@@ -1,10 +1,20 @@
 /**-----------TESTOWANIE APLIKACJI-ZADANIE 2--------------- */
 import App from "./App";
-import { shallow } from "enzyme";
+import React from "react";
+import { shallow, mount } from "enzyme";
 import MyComponent from "./MyComponent";
+import { render, fireEvent, getByTestId } from "@testing-library/react";
 import Input from "./Input";
-import { getByTestId, getByText,render, screen } from "@testing-library/react";
-import fireEvent from "@testing-library/user-event";
+import Form from "./Form";
+const inputValue = () => {
+  const utils = render(<Input ariaLabel="input" />);
+  const input = utils.getByLabelText("input");
+  return {
+    input,
+    ...utils,
+  };
+};
+
 describe("app test", () => {
   it("initial value should be 0", () => {
     const app = shallow(<App />);
@@ -34,25 +44,17 @@ describe("app test", () => {
     counterVal = wrapper.find("div span.counterVal");
     expect(counterVal.text()).toBe("Count : -1");
   });
-  const setup = () => {
-    const utils = render(<Input />)
-    const input = utils.getByLabelText('cost-input')
-    return {
-      input,
-      ...utils,
-    }
-  }
-  test("change value after set it in input field", async () => {
-    //doesn't work
+  it("value should change after input", () => {
+    const { input } = inputValue();
+    fireEvent.change(input, { target: { value: "23" } });
+    let val = input.value;
+    expect(val).toBe("23");
+    let form = mount(<Form />);
+    let btn = form.find("#click");
+    btn.simulate("click");
     let wrapper = shallow(<MyComponent />);
-    const { input } = setup()
-    fireEvent.change(input, { target: { value: '3' } })
-    expect(input.value).toBe('3')
-
-    // const counterVal = wrapper.find("span.counterVal");
-    // const submit = wrapper.find(".submit");
-    // expect(counterVal.text()).toBe("Count : 3");
-    
+    let counterVal = wrapper.find("span.counterVal");
+    expect(counterVal.text()).toBe("Count : 23");
   });
   it("state should set 0 after reset ", () => {
     let wrapper = shallow(<MyComponent />);

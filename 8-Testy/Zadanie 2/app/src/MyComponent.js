@@ -1,9 +1,8 @@
 import React, { useState, useRef } from "react";
-import Input from './Input';
+import Form from './Form';
 MyComponent.defaultProps = {
   start: 0
 }
-
 function MyComponent({start}) {
  const [val,setVal]=useState(0);
   const textInput = useRef(null);
@@ -20,7 +19,8 @@ function MyComponent({start}) {
     e.preventDefault();
     let value = parseInt(textInput.current.value);
     setCount(value);
-    textInput.current.value='';
+    console.log(value);
+    textInput.current.value='1';
   };
   const handleChange=(e)=>{
    setVal(e.target.value)
@@ -30,11 +30,7 @@ function MyComponent({start}) {
   return (
     <div>
       <br />
-      <form onSubmit={onSubmit}>
-      <label for="num">Enter</label>
-        <Input id="num" onChange={handleChange} type="text" reference={textInput} value={val} placeholder="Wartośc"/>
-        <Input className="submit" type="submit" value="Zmień" />
-      </form>
+      <Form onSubmit={onSubmit} handleChange={handleChange} textInput={textInput} val={val} />
       <button className="Reset" onClick={Reset}>Reset</button>
       <br />
       <br />
