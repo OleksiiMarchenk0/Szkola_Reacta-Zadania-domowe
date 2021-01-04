@@ -1,19 +1,16 @@
 /**-----------TESTOWANIE APLIKACJI-ZADANIE 2--------------- */
 import App from "./App";
 import React from "react";
-import { shallow, mount } from "enzyme";
+import { shallow, mount,enzyme } from "enzyme";
 import MyComponent from "./MyComponent";
-import { render, fireEvent, getByTestId } from "@testing-library/react";
+import { render, fireEvent, getByTestId, getByRole,getByText } from "@testing-library/react";
+import { screen } from "@testing-library/react";
 import Input from "./Input";
 import Form from "./Form";
-const inputValue = () => {
-  const utils = render(<Input ariaLabel="input" />);
-  const input = utils.getByLabelText("input");
-  return {
-    input,
-    ...utils,
-  };
-};
+import { useState } from "react";
+import {act} from 'react-dom/test-utils';
+
+
 
 describe("app test", () => {
   it("initial value should be 0", () => {
@@ -44,18 +41,23 @@ describe("app test", () => {
     counterVal = wrapper.find("div span.counterVal");
     expect(counterVal.text()).toBe("Count : -1");
   });
-  it("value should change after input", () => {
-    const { input } = inputValue();
-    fireEvent.change(input, { target: { value: "23" } });
-    let val = input.value;
-    expect(val).toBe("23");
-    let form = mount(<Form />);
-    let btn = form.find("#click");
-    btn.simulate("click");
-    let wrapper = shallow(<MyComponent />);
-    let counterVal = wrapper.find("span.counterVal");
-    expect(counterVal.text()).toBe("Count : 23");
-  });
+  it("value should change after input",async () => {
+    let component = mount(<MyComponent />);
+    const onClick = jest.fn();
+    const handleChange = jest.fn();
+    const {getByLabelText} = render(<Form onClick={onClick} handleChange={handleChange}/>)
+    await act(async ()=>{
+      fireEvent.change(getByLabelText("value"),{target:{value:"3"}})
+    })
+    await act(async ()=>{
+      const button = screen.getByText('Zmien');
+      fireEvent.click(button)
+     
+    })
+    let counterVal = component.find("div span.counterVal");
+    expect(counterVal.text()).toBe("Count : 3");
+
+});
   it("state should set 0 after reset ", () => {
     let wrapper = shallow(<MyComponent />);
     let counterVal = wrapper.find("span.counterVal");

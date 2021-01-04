@@ -15,22 +15,22 @@ function MyComponent({start}) {
   const handleSubstractButton = () => {
     setCount(count - 1);
   };
-  const onSubmit = (e) => {
+  const onClick = (e) => {
     e.preventDefault();
-    let value = parseInt(textInput.current.value);
+    console.log(textInput.current.value);
+    let value = parseInt(textInput.current.value,10);
     setCount(value);
-    console.log(value);
     textInput.current.value='1';
   };
   const handleChange=(e)=>{
-   setVal(e.target.value)
+   setVal(e.target.value);
   }
   const [count, setCount] = useState(start);
 
   return (
     <div>
       <br />
-      <Form onSubmit={onSubmit} handleChange={handleChange} textInput={textInput} val={val} />
+      <Form onClick={onClick} handleChange={handleChange} textInput={textInput} val={val} />
       <button className="Reset" onClick={Reset}>Reset</button>
       <br />
       <br />

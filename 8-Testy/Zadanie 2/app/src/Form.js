@@ -1,8 +1,9 @@
 import React from "react";
 import Input from "./Input";
-function Form({ onSubmit, handleChange, textInput, val }) {
+function Form({ onClick, handleChange, textInput, val }) {
   return (
-    <form onSubmit={onSubmit} id="add-form">
+    <form id="add-form">
+      <label for ="num">value</label>
       <Input
         id="num"
         ariaLabel="input"
@@ -12,8 +13,8 @@ function Form({ onSubmit, handleChange, textInput, val }) {
         val={val}
         placeholder="Wartość"
       />
-      <button class="submit" onClick={onSubmit}>
-        Zmień
+      <button className="click" onClick={onClick}>
+        Zmien
       </button>
     </form>
   );

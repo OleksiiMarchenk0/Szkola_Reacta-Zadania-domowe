@@ -31,7 +31,7 @@ describe("app test", () => {
     cy.visit("http://localhost:3000");
     const input = cy.get("#num");
     input.type(5);
-    const submit = cy.get(".submit");
+    const submit = cy.get(".click");
     submit.click();
     let counterVal = cy.get(".counterVal");
     counterVal.contains("Count : 5");
