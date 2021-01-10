@@ -5,6 +5,7 @@ function Form({ onClick, handleChange, textInput, val }) {
     <form id="add-form">
       <label for ="num">value</label>
       <Input
+      dataTestId= "content-input"
         id="num"
         ariaLabel="input"
         onChange={handleChange}
@@ -13,7 +14,7 @@ function Form({ onClick, handleChange, textInput, val }) {
         val={val}
         placeholder="Wartość"
       />
-      <button className="click" onClick={onClick}>
+      <button className="click" data-testid="click" onClick={onClick}>
         Zmien
       </button>
     </form>

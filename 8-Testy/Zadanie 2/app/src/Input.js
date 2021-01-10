@@ -1,8 +1,8 @@
 import React from "react";
 
-function Input({id,ariaLabel,onChange,type,reference,val,placeholder}) {
+function Input({id,dataTestId,ariaLabel,onChange,type,reference,val,placeholder}) {
   return (
-    <input aria-label={ariaLabel} id= {id} onChange={onChange} type= {type} ref={reference} value={val} placeholder={placeholder} />
+    <input data-testid={dataTestId} aria-label={ariaLabel} id= {id} onChange={onChange} type= {type} ref={reference} value={val} placeholder={placeholder} />
   );
 }
 

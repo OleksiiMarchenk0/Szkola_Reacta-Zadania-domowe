@@ -34,7 +34,7 @@ function MyComponent({start}) {
       <button className="Reset" onClick={Reset}>Reset</button>
       <br />
       <br />
-      <span className="counterVal">{`Count : ${count}`}</span>
+      <span data-testid="counter" className="counterVal">{`Count : ${count}`}</span>
       <button className="substract" onClick={handleSubstractButton}>-</button>
       <button className="add" onClick={handleAddButton}>+</button>
     </div>
